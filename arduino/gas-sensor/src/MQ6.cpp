@@ -1,12 +1,12 @@
 #include "MQ6.h"
 
-void MQ6::run()
+void MQ6::loop()
 {
 }
 MQ6::MQ6(/* args */)
 {
 //Definitions
-#define placa "Arduino UNO"
+#define placa "NodeMCU ESP8266"
 #define Voltage_Resolution 5
 #define pin A0                //Analog input 0 of your arduino
 #define type "MQ-6"           //MQ6

@@ -12,7 +12,7 @@ private:
     /* data */
 public:
     MQ6();
-    void run();
+    void loop();
     ~MQ6();
     float readLPG();
 };
