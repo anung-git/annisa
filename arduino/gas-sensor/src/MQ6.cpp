@@ -5,9 +5,20 @@ void MQ6::run()
 }
 MQ6::MQ6(/* args */)
 {
-    Mq.setRegressionMethod(1); //_PPM =  a*ratio^b
-    Mq.setA(2127.2);
-    Mq.setB(-2.526); // Configurate the ecuation values to get CH4 concentration
+//Definitions
+#define placa "Arduino UNO"
+#define Voltage_Resolution 5
+#define pin A0                //Analog input 0 of your arduino
+#define type "MQ-6"           //MQ6
+#define ADC_Bit_Resolution 10 // For arduino UNO/MEGA/NANO
+#define RatioMQ6CleanAir 10   //RS / R0 = 10 ppm
+    //#define calibration_button 13 //Pin to calibrate your sensor
+
+    //Declare Sensor
+    Mq = new MQUnifiedsensor(placa, Voltage_Resolution, ADC_Bit_Resolution, pin, type);
+    Mq->setRegressionMethod(1); //_PPM =  a*ratio^b
+    Mq->setA(2127.2);
+    Mq->setB(-2.526); // Configurate the ecuation values to get CH4 concentration
     /*
     Exponential regression:
     GAS     | a      | b
@@ -21,7 +32,7 @@ MQ6::MQ6(/* args */)
     /*****************************  MQ Init ********************************************/
     //Remarks: Configure the pin of arduino as input.
     /************************************************************************************/
-    Mq.init();
+    Mq->init();
 }
 
 MQ6::~MQ6()

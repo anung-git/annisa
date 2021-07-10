@@ -26,12 +26,15 @@
 
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
+#include "MQ6.h"
 
 // Update these with values suitable for your network.
 
 const char* ssid = "........";
 const char* password = "........";
 const char* mqtt_server = "broker.mqtt-dashboard.com";
+
+MQ6 sensor = MQ6();
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -68,7 +71,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Message arrived [");
   Serial.print(topic);
   Serial.print("] ");
-  for (int i = 0; i < length; i++) {
+  for (unsigned int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
   }
   Serial.println();
@@ -117,6 +120,8 @@ void setup() {
 }
 
 void loop() {
+
+  sensor.run();
 
   if (!client.connected()) {
     reconnect();
