@@ -40,12 +40,20 @@ void loop()
   android.loop();
 
   unsigned long now = millis();
-  if (now - lastMsg > 2000)
+  if (now - lastMsg > 3000)
   {
     val++;
     lastMsg = now;
     android.publish("gas", (val % 2) == 0 ? "1" : "0");
     Serial.print("Publish ke ");
     Serial.println(val);
+    String buffer;
+    buffer = String(random(100));
+
+    android.publish("annisa",buffer);
+    buffer = String(0.0314 *random(1000));
+    android.publish("annisa/temp",buffer);
+    buffer = String(random(20,80));
+    android.publish("annisa/humi",buffer);
   }
 }

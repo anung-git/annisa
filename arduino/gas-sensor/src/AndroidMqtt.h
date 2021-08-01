@@ -17,7 +17,7 @@ public:
     AndroidMqtt();
     void loop();
     void reconnect();
-    void publish(const char *topic, const char *msg);
+    void publish(const char *topic, String msg);
     void connect(const char *server, const char *topic);
 
     //not implement

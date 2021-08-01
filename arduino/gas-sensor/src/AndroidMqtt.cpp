@@ -49,11 +49,11 @@ void AndroidMqtt::callback(char *topic, byte *payload, unsigned int length)
     }
 }
 
-void AndroidMqtt::publish(const char *topic, const char *msg)
+void AndroidMqtt::publish(const char *topic, String msg)
 {
-    Serial.print("android Publish ");
+    // Serial.print("android Publish ");
     Serial.println(msg);
-    client->publish(topic, msg);
+    client->publish(topic, msg.c_str());
 }
 void AndroidMqtt::connect(const char *server, const char *topic)
 {
